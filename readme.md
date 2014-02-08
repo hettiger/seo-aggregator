@@ -1,3 +1,5 @@
+[![Latest Stable Version](https://poser.pugx.org/hettiger/seo-aggregator/version.png)](https://packagist.org/packages/hettiger/seo-aggregator) [![Build Status](https://travis-ci.org/hettiger/seo-aggregator.png?branch=master)](https://travis-ci.org/hettiger/seo-aggregator) [![License](https://poser.pugx.org/hettiger/seo-aggregator/license.png)](https://packagist.org/packages/hettiger/seo-aggregator)
+
 ## SEO Aggregator
 
 ** Status: Under Development **
