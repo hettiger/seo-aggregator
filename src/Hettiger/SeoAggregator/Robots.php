@@ -2,8 +2,18 @@
 
 class Robots implements RobotsInterface {
 
+    /**
+     * @var Helpers
+     */
+    protected $helpers;
+
     protected $disallowed_paths;
     protected $disallowed_collections;
+
+    function __construct($helpers)
+    {
+        $this->helpers = $helpers;
+    }
 
     /**
      * Disallow a path for robots
@@ -35,7 +45,6 @@ class Robots implements RobotsInterface {
      *
      * TODO Does not take care of disallowed paths yet
      * TODO Does not take care of disallowed collections yet
-     * TODO Does not take care of the sitemap yet
      *
      * @param bool $sitemap
      * @return string
@@ -43,6 +52,10 @@ class Robots implements RobotsInterface {
     public function getRobotsDirectives($sitemap = false)
     {
         $lines[] = 'User-agent: *';
+
+        if ( $sitemap ) {
+            $lines[] = PHP_EOL . 'Sitemap: ' . $this->helpers->url('sitemap.xml');
+        }
 
         $output = implode(PHP_EOL, $lines);
 
