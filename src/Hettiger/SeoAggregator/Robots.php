@@ -43,7 +43,6 @@ class Robots implements RobotsInterface {
     /**
      * Get the content for the robots.txt file
      *
-     * TODO Does not take care of disallowed paths yet
      * TODO Does not take care of disallowed collections yet
      *
      * @param bool $sitemap
@@ -52,6 +51,12 @@ class Robots implements RobotsInterface {
     public function getRobotsDirectives($sitemap = false)
     {
         $lines[] = 'User-agent: *';
+
+        if ( ! is_null($this->disallowed_paths) ) {
+            foreach ( $this->disallowed_paths as $path ) {
+                $lines[] = 'Disallow: ' . $path;
+            }
+        }
 
         if ( $sitemap ) {
             $lines[] = PHP_EOL . 'Sitemap: ' . $this->helpers->url('sitemap.xml');
