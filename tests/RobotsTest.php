@@ -62,6 +62,17 @@ class RobotsTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($e, $a);
     }
 
+    public function test_can_request_robots_directives_providing_protocol_and_host()
+    {
+        $helpers = new Helpers;
+        $robots = new Robots($helpers, 'http', 'domain.tld');
+
+        $e = 'User-agent: *' . PHP_EOL . PHP_EOL . 'Sitemap: http://domain.tld/sitemap.xml';
+        $a = $robots->getRobotsDirectives(true);
+
+        $this->assertEquals($e, $a);
+    }
+
     public function test_can_request_robots_directives_considering_one_disallowed_paths()
     {
         $robots = new Robots($this->helpers);

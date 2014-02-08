@@ -7,12 +7,23 @@ class Robots implements RobotsInterface {
      */
     protected $helpers;
 
+    protected $protocol;
+    protected $host;
+
     protected $disallowed_paths;
     protected $disallowed_collections;
 
-    function __construct($helpers)
+    /**
+     * @param HelpersInterface $helpers
+     * @param string $protocol
+     * @param null|string $host
+     */
+    function __construct($helpers, $protocol = 'http', $host = null)
     {
         $this->helpers = $helpers;
+
+        $this->protocol = $protocol;
+        $this->host = $host;
     }
 
     /**
@@ -59,7 +70,12 @@ class Robots implements RobotsInterface {
         }
 
         if ( $sitemap ) {
-            $lines[] = PHP_EOL . 'Sitemap: ' . $this->helpers->url('sitemap.xml');
+            $lines[] = PHP_EOL . 'Sitemap: '
+                . $this->helpers->url(
+                    'sitemap.xml',
+                    $this->protocol,
+                    $this->host
+                );
         }
 
         $output = implode(PHP_EOL, $lines);

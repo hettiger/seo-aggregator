@@ -7,15 +7,17 @@ class Helpers implements HelpersInterface {
      * (e.g. //domain.tld/path)
      *
      * @param string $path
+     * @param string $protocol
+     * @param null|string $host
      * @return string
      */
-    public function url($path)
+    public function url($path, $protocol = 'http', $host = null)
     {
-        return sprintf(
-            "%s://%s%s%s",
-            isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
-            $_SERVER['HTTP_HOST'],'/',$path
-        );
+        if ( is_null($host) ) {
+            $host = $_SERVER['HTTP_HOST'];
+        }
+
+        return $protocol . '://' . $host . '/' . $path;
     }
 
 }

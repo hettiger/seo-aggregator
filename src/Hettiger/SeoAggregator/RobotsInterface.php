@@ -3,6 +3,13 @@
 interface RobotsInterface {
 
     /**
+     * @param HelpersInterface $helpers
+     * @param string $protocol
+     * @param null|string $host
+     */
+    function __construct($helpers, $protocol = 'http', $host = null);
+
+    /**
      * Disallow a path for robots
      *
      * @param string $path
