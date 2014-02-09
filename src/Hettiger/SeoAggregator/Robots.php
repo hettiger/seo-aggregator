@@ -73,14 +73,16 @@ class Robots implements RobotsInterface {
      */
     protected function generateDisallowedCollections()
     {
-        foreach ( $this->disallowed_collections as $collection ) {
-            foreach ( $collection as $path ) {
-                if ( ! is_null($path->prefix) ) {
-                    $path->prefix .= '/';
-                }
+        if ( ! is_null($this->disallowed_collections) ) {
+            foreach ( $this->disallowed_collections as $collection ) {
+                foreach ( $collection as $path ) {
+                    if ( ! is_null($path->prefix) ) {
+                        $path->prefix .= '/';
+                    }
 
-                $this->addLine('Disallow: ' . '/' . $path->prefix . $path->slug);
-                $this->addLine('Allow: ' . '/' . $path->prefix . $path->slug . '-');
+                    $this->addLine('Disallow: ' . '/' . $path->prefix . $path->slug);
+                    $this->addLine('Allow: ' . '/' . $path->prefix . $path->slug . '-');
+                }
             }
         }
     }
@@ -92,8 +94,31 @@ class Robots implements RobotsInterface {
      */
     protected function generateDisallowedPaths()
     {
-        foreach ( $this->disallowed_paths as $path ) {
-            $this->addLine('Disallow: ' . $path);
+        if ( ! is_null($this->disallowed_paths) ) {
+            foreach ( $this->disallowed_paths as $path ) {
+                $this->addLine('Disallow: ' . $path);
+            }
+        }
+    }
+
+    /**
+     * Generate the sitemap link for robots.txt
+     *
+     * @param bool $sitemap
+     * @return void
+     */
+    protected function generateSitemapLink($sitemap)
+    {
+        if ( $sitemap ) {
+            $sitemap_link = PHP_EOL
+                . 'Sitemap: '
+                . $this->helpers->url(
+                    'sitemap.xml',
+                    $this->protocol,
+                    $this->host
+                );
+
+            $this->addLine($sitemap_link);
         }
     }
 
@@ -107,25 +132,9 @@ class Robots implements RobotsInterface {
     {
         $this->addLine('User-agent: *');
 
-        if ( ! is_null($this->disallowed_collections) ) {
-            $this->generateDisallowedCollections();
-        }
-
-        if ( ! is_null($this->disallowed_paths) ) {
-            $this->generateDisallowedPaths();
-        }
-
-        if ( $sitemap ) {
-            $sitemap_link = PHP_EOL
-                . 'Sitemap: '
-                . $this->helpers->url(
-                    'sitemap.xml',
-                    $this->protocol,
-                    $this->host
-                );
-
-            $this->addLine($sitemap_link);
-        }
+        $this->generateDisallowedCollections();
+        $this->generateDisallowedPaths();
+        $this->generateSitemapLink($sitemap);
 
         $output = implode(PHP_EOL, $this->lines);
 
