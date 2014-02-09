@@ -1,7 +1,5 @@
 <?php namespace Hettiger\SeoAggregator;
 
-use \ArrayObject;
-
 class Sitemap implements SitemapInterface {
 
     /**
@@ -39,7 +37,7 @@ class Sitemap implements SitemapInterface {
      */
     public function addLink($link, $updated_at)
     {
-        $link_object = new ArrayObject(array('link', 'updated_at'));
+        $link_object = new CustomObject;
         $link_object->link = $link;
         $link_object->updated_at = $updated_at;
 
