@@ -67,6 +67,24 @@ class Robots implements RobotsInterface {
     }
 
     /**
+     * Iterate trough a disallowed collection and add the directives
+     * 
+     * @param object $collection
+     * @return void
+     */
+    protected function iterateDisallowedCollection($collection)
+    {
+        foreach ( $collection as $path ) {
+            if ( ! is_null($path->prefix) ) {
+                $path->prefix .= '/';
+            }
+
+            $this->addLine('Disallow: ' . '/' . $path->prefix . $path->slug);
+            $this->addLine('Allow: ' . '/' . $path->prefix . $path->slug . '-');
+        }
+    }
+
+    /**
      * Generate the robots directives for disallowed collections
      *
      * @return void
@@ -75,14 +93,7 @@ class Robots implements RobotsInterface {
     {
         if ( ! is_null($this->disallowed_collections) ) {
             foreach ( $this->disallowed_collections as $collection ) {
-                foreach ( $collection as $path ) {
-                    if ( ! is_null($path->prefix) ) {
-                        $path->prefix .= '/';
-                    }
-
-                    $this->addLine('Disallow: ' . '/' . $path->prefix . $path->slug);
-                    $this->addLine('Allow: ' . '/' . $path->prefix . $path->slug . '-');
-                }
+                $this->iterateDisallowedCollection($collection);
             }
         }
     }
