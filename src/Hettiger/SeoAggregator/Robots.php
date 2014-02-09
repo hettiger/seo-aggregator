@@ -12,6 +12,7 @@ class Robots implements RobotsInterface {
 
     protected $disallowed_paths;
     protected $disallowed_collections;
+    protected $lines;
 
     /**
      * @param HelpersInterface $helpers
@@ -55,6 +56,48 @@ class Robots implements RobotsInterface {
     }
 
     /**
+     * Add one line to the output
+     *
+     * @param string $line
+     * @return void
+     */
+    protected function addLine($line)
+    {
+        $this->lines[] = $line;
+    }
+
+    /**
+     * Generate the robots directives for disallowed collections
+     *
+     * @return void
+     */
+    protected function generateDisallowedCollections()
+    {
+        foreach ( $this->disallowed_collections as $collection ) {
+            foreach ( $collection as $path ) {
+                if ( ! is_null($path->prefix) ) {
+                    $path->prefix .= '/';
+                }
+
+                $this->addLine('Disallow: ' . '/' . $path->prefix . $path->slug);
+                $this->addLine('Allow: ' . '/' . $path->prefix . $path->slug . '-');
+            }
+        }
+    }
+
+    /**
+     * Generate the robots directives for disallowed paths
+     *
+     * @return void
+     */
+    protected function generateDisallowedPaths()
+    {
+        foreach ( $this->disallowed_paths as $path ) {
+            $this->addLine('Disallow: ' . $path);
+        }
+    }
+
+    /**
      * Get the content for the robots.txt file
      *
      * @param bool $sitemap
@@ -62,39 +105,29 @@ class Robots implements RobotsInterface {
      */
     public function getRobotsDirectives($sitemap = false)
     {
-        $lines = array();
-
-        $lines[] = 'User-agent: *';
+        $this->addLine('User-agent: *');
 
         if ( ! is_null($this->disallowed_collections) ) {
-            foreach ( $this->disallowed_collections as $collection ) {
-                foreach ( $collection as $path ) {
-                    if ( ! is_null($path->prefix) ) {
-                        $path->prefix .= '/';
-                    }
-
-                    $lines[] = 'Disallow: ' . '/' . $path->prefix . $path->slug;
-                    $lines[] = 'Allow: ' . '/' . $path->prefix . $path->slug . '-';
-                }
-            }
+            $this->generateDisallowedCollections();
         }
 
         if ( ! is_null($this->disallowed_paths) ) {
-            foreach ( $this->disallowed_paths as $path ) {
-                $lines[] = 'Disallow: ' . $path;
-            }
+            $this->generateDisallowedPaths();
         }
 
         if ( $sitemap ) {
-            $lines[] = PHP_EOL . 'Sitemap: '
+            $sitemap_link = PHP_EOL
+                . 'Sitemap: '
                 . $this->helpers->url(
                     'sitemap.xml',
                     $this->protocol,
                     $this->host
                 );
+
+            $this->addLine($sitemap_link);
         }
 
-        $output = implode(PHP_EOL, $lines);
+        $output = implode(PHP_EOL, $this->lines);
 
         return $output;
     }
