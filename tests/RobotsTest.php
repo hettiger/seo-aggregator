@@ -151,7 +151,8 @@ class RobotsTest extends \PHPUnit_Framework_TestCase {
 
         $robots->disallowCollection($collection);
 
-        $e = 'User-agent: *' . PHP_EOL . 'Disallow: /bar' . PHP_EOL . 'Allow: /bar-' . PHP_EOL . PHP_EOL . 'Sitemap: url';
+        $e = 'User-agent: *' . PHP_EOL . 'Disallow: /bar' . PHP_EOL
+            . 'Allow: /bar-' . PHP_EOL . PHP_EOL . 'Sitemap: url';
         $a = $robots->getRobotsDirectives(true);
 
         $this->assertEquals($e, $a);
@@ -241,7 +242,7 @@ class RobotsTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($e, $a);
     }
 
-    public function test_can_request_robots_directives_with_a_mix_of_single_paths_and_collections_with_prefix_and_sitemap_link()
+    public function test_can_request_robots_directives_with_a_mix_of_all_features()
     {
         $this->helpers->shouldReceive('url')->andReturn('url');
         $robots = new Robots($this->helpers);
@@ -261,6 +262,9 @@ class RobotsTest extends \PHPUnit_Framework_TestCase {
         $e = 'User-agent: *' . PHP_EOL . 'Disallow: /prefix/foo' . PHP_EOL . 'Allow: /prefix/foo-'
             . PHP_EOL . 'Disallow: /prefix/bar' . PHP_EOL . 'Allow: /prefix/bar-'
             . PHP_EOL . 'Disallow: /foo-bar' . PHP_EOL . PHP_EOL . 'Sitemap: url';
+        $a = $robots->getRobotsDirectives(true);
+
+        $this->assertEquals($e, $a);
     }
 
 }
