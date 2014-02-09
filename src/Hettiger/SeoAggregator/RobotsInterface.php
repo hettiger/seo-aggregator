@@ -6,6 +6,7 @@ interface RobotsInterface {
      * @param HelpersInterface $helpers
      * @param string $protocol
      * @param null|string $host
+     * @return \Hettiger\SeoAggregator\RobotsInterface
      */
     function __construct($helpers, $protocol = 'http', $host = null);
 
@@ -13,6 +14,7 @@ interface RobotsInterface {
      * Disallow a path for robots
      *
      * @param string $path
+     * @return void
      */
     public function disallowPath($path);
 
@@ -21,6 +23,7 @@ interface RobotsInterface {
      *
      * @param array|object $collection
      * @param string $url_prefix
+     * @return void
      */
     public function disallowCollection($collection, $url_prefix = null);
 

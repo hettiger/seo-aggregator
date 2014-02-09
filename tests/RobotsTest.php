@@ -39,6 +39,8 @@ class RobotsTest extends \PHPUnit_Framework_TestCase {
         $collection->append((object) array(
             'foo' => 'bar'
         ));
+
+        $robots->disallowCollection($collection);
     }
 
     public function test_can_request_robots_directives()

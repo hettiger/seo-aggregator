@@ -17,6 +17,7 @@ class Robots implements RobotsInterface {
      * @param HelpersInterface $helpers
      * @param string $protocol
      * @param null|string $host
+     * @return \Hettiger\SeoAggregator\Robots
      */
     function __construct($helpers, $protocol = 'http', $host = null)
     {
@@ -30,6 +31,7 @@ class Robots implements RobotsInterface {
      * Disallow a path for robots
      *
      * @param string $path
+     * @return void
      */
     public function disallowPath($path)
     {
@@ -41,6 +43,7 @@ class Robots implements RobotsInterface {
      *
      * @param object $collection
      * @param string $url_prefix
+     * @return void
      */
     public function disallowCollection($collection, $url_prefix = null)
     {
@@ -59,6 +62,8 @@ class Robots implements RobotsInterface {
      */
     public function getRobotsDirectives($sitemap = false)
     {
+        $lines = array();
+
         $lines[] = 'User-agent: *';
 
         if ( ! is_null($this->disallowed_collections) ) {
