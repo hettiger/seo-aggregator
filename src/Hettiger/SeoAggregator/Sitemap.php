@@ -72,14 +72,37 @@ class Sitemap implements SitemapInterface {
     }
 
     /**
-     * Get the content for the sitemap.xml file
+     * Iterate through a collection and add lines accordingly
      *
-     * @return string
+     * @param object $collection
      */
-    public function getSitemapXml()
+    protected function iterateCollection($collection)
     {
-        $this->addLine('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+        foreach ( $collection as $link ) {
+            if ( ! is_null($link->prefix) ) {
+                $link->prefix .= '/';
+            }
 
+            $this->addLine('<url>');
+            $this->addLine('<loc>');
+            $this->addLine($this->helpers->url(
+                $link->prefix . $link->slug,
+                $this->protocol,
+                $this->host
+            ));
+            $this->addLine('</loc>');
+            $this->addLine('<lastmod>' . date_format($link->updated_at, 'Y-m-d') . '</lastmod>');
+            $this->addLine('</url>');
+        }
+    }
+
+    /**
+     * Generate the content of all links for the sitemap
+     *
+     * @return void
+     */
+    protected function generateLinks()
+    {
         if ( ! is_null($this->links) ) {
             foreach ( $this->links as $link ) {
                 $this->addLine('<url>');
@@ -94,27 +117,33 @@ class Sitemap implements SitemapInterface {
                 $this->addLine('</url>');
             }
         }
+    }
 
+    /**
+     * Generate the content of all collections for the sitemap
+     *
+     * @return void
+     */
+    protected function generateCollections()
+    {
         if ( ! is_null($this->collections) ) {
             foreach ( $this->collections as $collection ) {
-                foreach ( $collection as $link ) {
-                    if ( ! is_null($link->prefix) ) {
-                        $link->prefix .= '/';
-                    }
-
-                    $this->addLine('<url>');
-                    $this->addLine('<loc>');
-                    $this->addLine($this->helpers->url(
-                        $link->prefix . $link->slug,
-                        $this->protocol,
-                        $this->host
-                    ));
-                    $this->addLine('</loc>');
-                    $this->addLine('<lastmod>' . date_format($link->updated_at, 'Y-m-d') . '</lastmod>');
-                    $this->addLine('</url>');
-                }
+                $this->iterateCollection($collection);
             }
         }
+    }
+
+    /**
+     * Get the content for the sitemap.xml file
+     *
+     * @return string
+     */
+    public function getSitemapXml()
+    {
+        $this->addLine('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+
+        $this->generateLinks();
+        $this->generateCollections();
 
         $this->addLine('</urlset>');
 
