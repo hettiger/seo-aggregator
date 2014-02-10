@@ -21,7 +21,7 @@ interface RobotsInterface {
     /**
      * Disallow a collection of paths for robots
      *
-     * @param array|object $collection
+     * @param object $collection
      * @param string $url_prefix
      * @return void
      */

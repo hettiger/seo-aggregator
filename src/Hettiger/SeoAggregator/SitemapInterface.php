@@ -22,7 +22,7 @@ interface SitemapInterface {
     /**
      * Add a collection of links to the sitemap
      *
-     * @param array|object $collection
+     * @param object $collection
      * @param string $url_prefix
      * @return void
      */
