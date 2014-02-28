@@ -37,7 +37,7 @@ As a [Laravel 4](http://laravel.com) user you would just throw your [Eloquent Mo
 	header('Content-Type: ' . 'text/xml');
 	
 	// Setup
-	$helpers = new Hettiger\SeoAggregator\Helpers;
+	$helpers = new Hettiger\SeoAggregator\Support\Helpers;
     $sitemap = new Hettiger\SeoAggregator\Sitemap($helpers);
     
     // Prepare data for the lastmod tag
@@ -106,7 +106,7 @@ The Eloquent Model must have a field called 'slug' and one called 'updated_at' f
 	header('Content-Type: ' . 'text/plain');
 	
 	// Setup
-	$helpers = new Hettiger\SeoAggregator\Helpers;
+	$helpers = new Hettiger\SeoAggregator\Support\Helpers;
     $robots = new Hettiger\SeoAggregator\Robots($helpers);
 
 	// Create a new Collection

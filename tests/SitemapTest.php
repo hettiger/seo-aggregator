@@ -1,5 +1,6 @@
 <?php namespace Hettiger\SeoAggregator;
 
+use \Hettiger\SeoAggregator\Support\Helpers;
 use \Mockery as m;
 use \ArrayObject;
 use \DateTime;
@@ -15,7 +16,7 @@ class SitemapTest extends \PHPUnit_Framework_TestCase {
     {
         parent::setUp();
 
-        $this->helpers = m::mock('Hettiger\SeoAggregator\Helpers');
+        $this->helpers = m::mock('Hettiger\SeoAggregator\Support\Helpers');
     }
 
     protected function tearDown()
