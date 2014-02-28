@@ -1,4 +1,4 @@
-<?php namespace Hettiger\SeoAggregator;
+<?php namespace Hettiger\SeoAggregator\Interfaces;
 
 interface RobotsInterface {
 
@@ -6,7 +6,7 @@ interface RobotsInterface {
      * @param HelpersInterface $helpers
      * @param string $protocol
      * @param null|string $host
-     * @return \Hettiger\SeoAggregator\RobotsInterface
+     * @return RobotsInterface
      */
     function __construct($helpers, $protocol = 'http', $host = null);
 

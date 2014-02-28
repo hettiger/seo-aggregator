@@ -1,4 +1,6 @@
-<?php namespace Hettiger\SeoAggregator;
+<?php namespace Hettiger\SeoAggregator\Support;
+
+use Hettiger\SeoAggregator\Interfaces\HelpersInterface;
 
 class Helpers implements HelpersInterface {
 
