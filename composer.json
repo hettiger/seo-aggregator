@@ -1,7 +1,7 @@
 {
     "name": "hettiger/seo-aggregator",
-    "description": "Automatically generate sitemap.xml and robots.txt files with ease.",
-    "keywords": ["seo", "generate", "generator", "hettiger", "aggregator", "seo-aggregator"],
+    "description": "Generate sitemap.xml and robots.txt files in Laravel or any PHP Application with ease.",
+    "keywords": ["seo", "generate", "generator", "robots.txt", "sitemap.xml", "seo-aggregator"],
     "license": "MIT",
     "authors": [
         {

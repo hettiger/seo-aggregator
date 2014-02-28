@@ -4,15 +4,100 @@
 
 Automatically generate sitemap.xml and robots.txt files with ease.
 
-This package aims to allow you throwing [Eloquent Models](https://github.com/illuminate/database) at it and generate sitemap.xml + robots.txt files for you. It is mainly desired for use with [Laravel 4](http://laravel.com). Anyways it's developed with the whole PHP Community in mind :-)
+This package allows you throwing [Eloquent Models](https://github.com/illuminate/database) at it in order to generate sitemap.xml + robots.txt files. It is mainly desired for use with [Laravel 4](http://laravel.com). Anyways it's developed with the whole PHP Community in mind :-)
 
 ###### Warning
 
-This package is still at an early stage of development. We're missing the complete functionality for generating a sitemap at this time. Anyways the master branch and tagged versions are considered stable and can be used. Once the sitemap generator is done this package will be optimized for use with [Laravel 4](http://laravel.com). (Which doesn't mean you couldn't use it already)
+This package hast not yet been optimized for the use with [Laravel 4](http://laravel.com). (Which doesn't mean you couldn't use it already)
 
 ### Usage
 
-I know this is far from a good documentation but since this package is very small I'm pretty sure it will suit your needs.
+I know this is far from a good documentation but since this package is very small I'm pretty sure it will suit your needs.)
+
+###### Note on the following code examples
+
+I know the creation of collections and adding links to them seems pretty verbose. Dont worry thought ...! Theres no reason creating collections yourself! I just did it in the examples so you get a better understanding of what is happening and how the output is being generated.
+
+As a [Laravel 4](http://laravel.com) user you would just throw your [Eloquent Models](https://github.com/illuminate/database) at the class which is described further on. If you're not using [Laravel 4](http://laravel.com) forget about collections and have a look at the following code. It could lead you on the right track:
+
+	// Sitemap
+	foreach ( $array_of_links as $link ) {
+		$sitemap->addLink($link['slug'], $link['date_time']);
+	}
+	
+	// Robots Directives
+	foreach ( $array_of_links as $link ) {
+		$robots->disallowPath('/' . $link['slug']);
+	}
+
+#### Sitemap
+
+##### Generate your sitemap.xml file contents
+
+	header('Content-Type: ' . 'text/xml');
+	
+	// Setup
+	$helpers = new Hettiger\SeoAggregator\Helpers;
+    $sitemap = new Hettiger\SeoAggregator\Sitemap($helpers);
+    
+    // Prepare data for the lastmod tag
+    $date_time = new DateTime('now');
+    
+    // Add a single Link
+    $sitemap->addLink('foo/bar', $date_time);
+    
+    // Create a new Collection
+    $collection = new ArrayObject;
+    
+    // Add Links to the Collection
+    $collection->append((object) array(
+    	'slug' => 'foo',
+    	'updated_at' => $date_time
+    ));
+    
+    $collection->append((object) array(
+    	'slug' => 'bar',
+        'updated_at' => $date_time
+    ));
+    
+    // Add the Collection with a URL Prefix (The prefix can be omitted)
+    $sitemap->addCollection($collection, 'prefix');
+    
+    // Echo out the sitemap.xml contents
+    echo $sitemap->getSitemapXml();
+
+##### Output for the example above
+
+	<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+		<url>
+			<loc>http://domain.tld/foo/bar</loc>
+			<lastmod>2014-02-27</lastmod>
+		</url>
+		<url>
+			<loc>http://domain.tld/prefix/foo</loc>
+			<lastmod>2014-02-27</lastmod>
+		</url>
+		<url>
+			<loc>http://domain.tld/prefix/bar</loc>
+			<lastmod>2014-02-27</lastmod>
+		</url>
+	</urlset>
+
+##### I want https and a fix domain
+
+	// Setup
+	$helpers = new Helpers;
+	$sitemap = new Sitemap($helpers, 'https', 'domain.tld');
+	
+You can always define protocol and domain during setup.
+	
+##### Throw an Eloquent Model at it
+
+	$collection = Pages::all();
+	
+	$sitemap->addCollection($collection);
+
+The Eloquent Model must have a field called 'slug' and one called 'updated_at' for this to work. If it doesn't you may want to extend the Sitemap class and overwrite the protected function iterateCollection().
 
 #### Robots Directives
 
@@ -54,13 +139,13 @@ I know this is far from a good documentation but since this package is very smal
 	Allow: /prefix/bar-
 	Disallow: /foo-bar
 
-	Sitemap: http://intranet.dev/sitemap.xml
+	Sitemap: http://domain.tld/sitemap.xml
 	
 ##### Why those Allow statements?
 
 This package is desiered for use with "Pretty URLs". See this discussion at [StackOverflow](http://stackoverflow.com/questions/21367853/pretty-urls-and-robots-txt) for more information.
 
-If you don't aggree with this at all or want some completely different output you can always extend the Robots class.
+If you don't aggree with this at all or want some completely different output you can always extend the Robots class and overwrite the protected function iterateDisallowedCollection().
 
 ##### I want https and a fix domain
 
@@ -78,11 +163,11 @@ You can always define protocol and domain during setup.
     
 The Eloquent Model must have a field called 'slug' for this to work. If it doesn't you may want to extend the Robots class and overwrite the protected function iterateDisallowedCollection().
 
-##### Warning
+##### Omitting the Sitemap Link
 
-For now you should either provide your own sitemap.xml file or generate your robots directives like this:
+In case you don't provide a sitemap.xml file for robots we've got you covered.
 
-	// Omit the Sitemap Link
+	// Omitting the Sitemap Link
 	$robots->getRobotsDirectives();
 	
 #### I need more help!
