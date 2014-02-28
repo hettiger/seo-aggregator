@@ -1,4 +1,4 @@
-<?php namespace Hettiger\SeoAggregator;
+<?php namespace Hettiger\SeoAggregator\Interfaces;
 
 interface HelpersInterface {
 

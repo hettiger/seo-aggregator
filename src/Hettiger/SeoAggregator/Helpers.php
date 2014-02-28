@@ -1,5 +1,7 @@
 <?php namespace Hettiger\SeoAggregator;
 
+use Hettiger\SeoAggregator\Interfaces\HelpersInterface;
+
 class Helpers implements HelpersInterface {
 
     /**

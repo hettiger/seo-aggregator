@@ -1,5 +1,8 @@
 <?php namespace Hettiger\SeoAggregator;
 
+use Hettiger\SeoAggregator\Interfaces\HelpersInterface;
+use Hettiger\SeoAggregator\Interfaces\RobotsInterface;
+
 class Robots implements RobotsInterface {
 
     /**
@@ -18,7 +21,7 @@ class Robots implements RobotsInterface {
      * @param HelpersInterface $helpers
      * @param string $protocol
      * @param null|string $host
-     * @return \Hettiger\SeoAggregator\Robots
+     * @return Robots
      */
     function __construct($helpers, $protocol = 'http', $host = null)
     {

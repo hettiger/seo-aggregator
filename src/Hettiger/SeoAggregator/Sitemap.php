@@ -1,5 +1,8 @@
 <?php namespace Hettiger\SeoAggregator;
 
+use Hettiger\SeoAggregator\Interfaces\HelpersInterface;
+use Hettiger\SeoAggregator\Interfaces\SitemapInterface;
+
 class Sitemap implements SitemapInterface {
 
     /**
@@ -18,7 +21,7 @@ class Sitemap implements SitemapInterface {
      * @param HelpersInterface $helpers
      * @param string $protocol
      * @param null|string $host
-     * @return \Hettiger\SeoAggregator\Sitemap
+     * @return Sitemap
      */
     function __construct($helpers, $protocol = 'http', $host = null)
     {
