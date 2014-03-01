@@ -9,7 +9,3 @@ For any PHP App
 ### Adding single Links
 
 
-
-### Adding an Eloquent Models Links
-
-

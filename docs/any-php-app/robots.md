@@ -10,10 +10,6 @@ For any PHP App
 
 
 
-### Disallow an Eloquent Models Links
-
-
-
 ### Adding a Link to the Sitemap
 
 
