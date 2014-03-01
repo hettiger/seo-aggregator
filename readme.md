@@ -10,6 +10,18 @@ This package allows you throwing [Eloquent Models](https://github.com/illuminate
 
 This package hast not yet been optimized for the use with [Laravel 4](http://laravel.com). (Which doesn't mean you couldn't use it already)
 
+### Version Numbers
+
+The first digit hits '1' when the package has reached all initial goals. After that it will only go up on complete rewrites. The second digit rises whenever an update comes with some heavy changes that could break your existing code. (Make sure to read the release notes before updating) The third digit is presenting minor changes that don't tend to break your existing code. None of these are limited in any way. A version number like 1.134.22 would be perfectly fine.
+
+Current suggestion on how to add this package in your composer.json file: 
+
+    "require": {
+        "php": ">=5.3.0",
+        "hettiger/seo-aggregator": "0.1.*",
+        // ...
+    },
+
 ### Usage
 
 I know this is far from a good documentation but since this package is very small I'm pretty sure it will suit your needs.)
