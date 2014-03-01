@@ -1,4 +1,4 @@
-<?php namespace Hettiger\SeoAggregator;
+<?php namespace Hettiger\SeoAggregator\Support;
 
 class CustomObject extends \ArrayObject {
 

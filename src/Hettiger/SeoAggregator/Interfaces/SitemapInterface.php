@@ -1,4 +1,4 @@
-<?php namespace Hettiger\SeoAggregator;
+<?php namespace Hettiger\SeoAggregator\Interfaces;
 
 interface SitemapInterface {
 
@@ -6,7 +6,7 @@ interface SitemapInterface {
      * @param HelpersInterface $helpers
      * @param string $protocol
      * @param null|string $host
-     * @return \Hettiger\SeoAggregator\SitemapInterface
+     * @return SitemapInterface
      */
     function __construct($helpers, $protocol = 'http', $host = null);
 
