@@ -1,5 +1,8 @@
 <?php namespace Hettiger\SeoAggregator\Providers;
 
+use Hettiger\SeoAggregator\Robots;
+use Hettiger\SeoAggregator\Support\Helpers;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 class SeoAggregatorServiceProvider extends ServiceProvider {
@@ -28,7 +31,12 @@ class SeoAggregatorServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
+        App::bind('robots', function()
+        {
+            $helpers = new Helpers();
+
+            return new Robots($helpers);
+        });
 	}
 
 	/**
