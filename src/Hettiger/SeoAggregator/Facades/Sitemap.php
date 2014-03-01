@@ -6,7 +6,7 @@ class Sitemap extends Facade {
 
     protected static function getFacadeAccessor()
     {
-        return 'sitemap';
+        return 'seo-aggregator.sitemap';
     }
 
 }

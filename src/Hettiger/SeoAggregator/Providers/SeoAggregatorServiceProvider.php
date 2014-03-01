@@ -33,7 +33,7 @@ class SeoAggregatorServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-        App::bind('sitemap', function()
+        App::bind('seo-aggregator.sitemap', function()
         {
             $protocol = Config::get('seo-aggregator::protocol');
             $host = Config::get('seo-aggregator::host');
@@ -41,7 +41,7 @@ class SeoAggregatorServiceProvider extends ServiceProvider {
             return new Sitemap(new Helpers, $protocol, $host);
         });
 
-        App::bind('robots', function()
+        App::bind('seo-aggregator.robots', function()
         {
             $protocol = Config::get('seo-aggregator::protocol');
             $host = Config::get('seo-aggregator::host');
@@ -57,7 +57,10 @@ class SeoAggregatorServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array('sitemap', 'robots');
+		return array(
+            'seo-aggregator.sitemap',
+            'seo-aggregator.robots'
+        );
 	}
 
 }

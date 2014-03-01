@@ -6,7 +6,7 @@ class Robots extends Facade {
 
     protected static function getFacadeAccessor()
     {
-        return 'robots';
+        return 'seo-aggregator.robots';
     }
 
 }
