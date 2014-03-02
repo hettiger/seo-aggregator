@@ -21,6 +21,8 @@ developed with the whole PHP Community in mind.
 
 The Documentation can be found [here](docs/index.md).
 
+If you have any Problems with the Documentation please open an Issue.
+
 ### Require with Composer – Current Suggestion:
 
     "require": {
