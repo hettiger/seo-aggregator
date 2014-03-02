@@ -7,23 +7,24 @@
     "packages": [
         {
             "name": "illuminate/support",
-            "version": "v4.1.22",
+            "version": "v4.1.23",
             "target-dir": "Illuminate/Support",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "229ad546efb43cd1a6c14ca40e4ff44a468b16eb"
+                "reference": "3134bebb9997be4963b320da8b7db2752d7cb937"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/229ad546efb43cd1a6c14ca40e4ff44a468b16eb",
-                "reference": "229ad546efb43cd1a6c14ca40e4ff44a468b16eb",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/3134bebb9997be4963b320da8b7db2752d7cb937",
+                "reference": "3134bebb9997be4963b320da8b7db2752d7cb937",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "require-dev": {
+                "jeremeamia/superclosure": "1.0.*",
                 "mockery/mockery": "0.9.*",
                 "patchwork/utf8": "1.1.*",
                 "phpunit/phpunit": "3.7.*"
@@ -54,7 +55,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2014-02-15 09:27:21"
+            "time": "2014-02-27 21:11:13"
         }
     ],
     "packages-dev": [

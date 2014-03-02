@@ -1,6 +1,11 @@
 <?php namespace Hettiger\SeoAggregator\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use \App;
+use \Config;
+use \Hettiger\SeoAggregator\Robots;
+use \Hettiger\SeoAggregator\Sitemap;
+use \Hettiger\SeoAggregator\Support\Helpers;
+use \Illuminate\Support\ServiceProvider;
 
 class SeoAggregatorServiceProvider extends ServiceProvider {
 
@@ -18,7 +23,7 @@ class SeoAggregatorServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('hettiger/seo-aggregator');
+		$this->package('hettiger/seo-aggregator', null, __DIR__ . '/../../../../src');
 	}
 
 	/**
@@ -28,17 +33,34 @@ class SeoAggregatorServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
+        App::bind('seo-aggregator.sitemap', function()
+        {
+            $protocol = Config::get('seo-aggregator::protocol');
+            $host = Config::get('seo-aggregator::host');
+
+            return new Sitemap(new Helpers, $protocol, $host);
+        });
+
+        App::bind('seo-aggregator.robots', function()
+        {
+            $protocol = Config::get('seo-aggregator::protocol');
+            $host = Config::get('seo-aggregator::host');
+
+            return new Robots(new Helpers, $protocol, $host);
+        });
 	}
 
 	/**
 	 * Get the services provided by the provider.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function provides()
 	{
-		return array();
+		return array(
+            'seo-aggregator.sitemap',
+            'seo-aggregator.robots'
+        );
 	}
 
 }
