@@ -1,5 +1,12 @@
 ## SEO Aggregator
 
+#### Version: 1.0.0
+
+###### Achievements
+
+* Fully optimized for usage with Laravel 4
+* New and less verbose documentation
+
 #### Version: 0.1.0
 
 ###### Important Changes
