@@ -10,10 +10,10 @@ For Laravel 4
 
 
 
-### Adding a Link to the Sitemap
-
-
-
 ### How to publish the generated contents
+
+
+
+### Adding a Link to the Sitemap
 
 

@@ -6,7 +6,6 @@
 
 * [Installation](laravel-4/basics.md#installation)
 * [Configuration](laravel-4/basics.md#configuration)
-* [How to publish the generated contents](laravel-4/basics.md#how-to-publish-the-generated-contents)
 
 ### Sitemap
 
@@ -18,8 +17,8 @@
 
 * [Disallow single Paths](laravel-4/robots.md#disallow-single-paths)
 * [Disallow an Eloquent Models Links](laravel-4/robots.md#disallow-an-eloquent-models-links)
-* [Adding a Link to the Sitemap](laravel-4/robots.md#adding-a-link-to-the-sitemap)
 * [How to publish the generated contents](laravel-4/robots.md#how-to-publish-the-generated-contents)
+* [Adding a Link to the Sitemap](laravel-4/robots.md#adding-a-link-to-the-sitemap)
 
 ## Usage with any PHP App
 
@@ -31,10 +30,12 @@
 ### Sitemap
 
 * [Adding single Links](any-php-app/sitemap.md#adding-single-links)
+* [Adding many Links](any-php-app/sitemap.md#adding-many-links)
 * [How to publish the generated contents](any-php-app/sitemap.md#how-to-publish-the-generated-contents)
 
 ### Robots
 
 * [Disallow single Paths](any-php-app/robots.md#disallow-single-paths)
-* [Adding a Link to the Sitemap](any-php-app/robots.md#adding-a-link-to-the-sitemap)
+* [Disallow many Paths](any-php-app/robots.md#disallow-many-paths)
 * [How to publish the generated contents](any-php-app/robots.md#how-to-publish-the-generated-contents)
+* [Adding a Link to the Sitemap](any-php-app/robots.md#adding-a-link-to-the-sitemap)
