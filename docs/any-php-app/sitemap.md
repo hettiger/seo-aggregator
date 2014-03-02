@@ -2,10 +2,10 @@
 
 For any PHP App
 
-### Setting the Output Header
-
-
-
 ### Adding single Links
+
+
+
+### How to publish the generated contents
 
 

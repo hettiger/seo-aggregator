@@ -2,10 +2,6 @@
 
 For Laravel 4
 
-### Setting the Output Header
-
-
-
 ### Disallow single Paths
 
 
@@ -15,5 +11,9 @@ For Laravel 4
 
 
 ### Adding a Link to the Sitemap
+
+
+
+### How to publish the generated contents
 
 
