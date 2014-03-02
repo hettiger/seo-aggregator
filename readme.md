@@ -8,19 +8,20 @@ This package allows you throwing [Eloquent Models](https://github.com/illuminate
 
 ### Documentation
 
-Take a look [here](docs/index.md) ;-)
+The Documentation can be found [here](docs/index.md).
 
-### Version Numbers
-
-The first digit hits '1' when the package has reached all initial goals. After that it will only go up on complete rewrites. The second digit rises whenever an update comes with some heavy changes that could break your existing code. (Make sure to read the release notes before updating) The third digit is presenting minor changes that don't tend to break your existing code. None of these are limited in any way. A version number like 1.134.22 would be perfectly fine.
-
-Current suggestion on how to add this package in your composer.json file: 
+### Current Suggestion on how to require this Package with Composer
 
     "require": {
         "php": ">=5.3.0",
         "hettiger/seo-aggregator": "0.1.*",
         // ...
     },
+
+#### Version Numbers
+
+An Update is always considered safe when only the last digit goes up. Never update when the first or second digit
+has changed without looking into the [Release Notes](release-notes.md).
 
 ### License
 
