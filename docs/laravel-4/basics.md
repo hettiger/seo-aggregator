@@ -6,7 +6,7 @@ For Laravel 4
 
 Require this package with [Composer](https://getcomposer.org) and update your dependencies.
 
-[How should i require this package?](/../../readme.md#require-with-composer--current-suggestion)
+[How should i require this package?](/../readme.md#require-with-composer--current-suggestion)
 
 #### Registration of the ServiceProvider
 
