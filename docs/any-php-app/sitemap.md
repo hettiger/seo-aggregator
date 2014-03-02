@@ -73,3 +73,10 @@ when setting the links and generating the output everything will be fine.
             <lastmod>2014-03-02</lastmod>
         </url>
     </urlset>
+
+#### Where do I put this?
+
+Well I don't care ... :-)
+
+I guess you could do this in a controller... Just make sure this is being executed when someone requests
+domain.tld/sitemap.xml

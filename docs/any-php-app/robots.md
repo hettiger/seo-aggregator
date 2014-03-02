@@ -56,7 +56,16 @@ when setting the directives and generating the output everything will be fine.
 
     Sitemap: http://domain.tld/sitemap.xml
 
+#### Where do I put this?
+
+Well I don't care ... :-)
+
+I guess you could do this in a controller... Just make sure this is being executed when someone requests
+domain.tld/robots.txt
+
 ### Adding a Link to the Sitemap
+
+I hope the difference is self explaining...
 
 #### Generate the robots.txt contents WITHOUT a Link to the Sitemap:
 

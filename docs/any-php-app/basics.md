@@ -8,6 +8,8 @@ For any PHP App
 
 Require this package with [Composer](https://getcomposer.org) and update your dependencies.
 
+Package Name: hettiger/seo-aggregator
+
 #### If you're not using Composer yet
 
 Download this package and place it anywhere in your app. Once thats done you'll need to install it following these simple instructions:
