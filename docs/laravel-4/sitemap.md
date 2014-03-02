@@ -32,7 +32,7 @@ accessed once needed.
     $collection = Pages::all();
 
     // Add the Collection with a URL Prefix (The prefix can be omitted)
-    $sitemap->addCollection($collection, 'prefix');
+    Sitemap::addCollection($collection, 'prefix');
 
 You can do this anywhere in your App but be aware... The Eloquent Model must have a field called 'slug' and the
 'updated_at' field for this to work. If you run into trouble you could always do a foreach() with single Links

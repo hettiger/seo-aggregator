@@ -4,13 +4,24 @@
 
 Generate sitemap.xml and robots.txt files in Laravel or any PHP Application with ease.
 
-This package allows you throwing [Eloquent Models](https://github.com/illuminate/database) at it in order to generate sitemap.xml + robots.txt files. It is mainly desired for use with [Laravel 4](http://laravel.com). Anyways it's developed with the whole PHP Community in mind :-)
+This package allows you throwing [Eloquent Models](https://github.com/illuminate/database) at it in order to generate
+sitemap.xml + robots.txt files. It is mainly desired for use with [Laravel 4](http://laravel.com). Anyways it's
+developed with the whole PHP Community in mind.
+
+### Brief Example for Usage with Laravel 4
+
+    $collection = Pages::all();
+
+    Sitemap::addCollection($collection, 'url-prefix');
+
+    return Response::make(Sitemap::getSitemapXml())
+        ->header('Content-Type', 'text/xml');
 
 ### Documentation
 
 The Documentation can be found [here](docs/index.md).
 
-### Current Suggestion on how to require this Package with Composer
+### Require with Composer – Current Suggestion:
 
     "require": {
         "php": ">=5.3.0",
@@ -20,8 +31,8 @@ The Documentation can be found [here](docs/index.md).
 
 #### Version Numbers
 
-An Update is always considered safe when only the last digit goes up. Never update when the first or second digit
-has changed without looking into the [Release Notes](release-notes.md).
+An Update is always considered safe on changes regarding the last digit of the Version Number. Never update when the
+first or second digit has changed without looking into the [Release Notes](release-notes.md).
 
 ### License
 
