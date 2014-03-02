@@ -25,7 +25,7 @@ The Documentation can be found [here](docs/index.md).
 
     "require": {
         "php": ">=5.3.0",
-        "hettiger/seo-aggregator": "0.1.*",
+        "hettiger/seo-aggregator": "1.0.*",
         // ...
     },
 
