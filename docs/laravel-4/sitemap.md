@@ -4,14 +4,18 @@ For Laravel 4
 
 ### Adding single Links
 
-    // Prepare data for the lastmod tag
-    $date_time = new DateTime('now');
+```php
+// Prepare data for the lastmod tag
+$date_time = new DateTime('now');
+```
 
 We need some data for the lastmod tag. Have a read about the
 [DateTime Class](http://www.php.net/manual/en/class.datetime.php) if you're stuck on this...
 
-    // Add a single Link
-    Sitemap::addLink('foo/bar', $date_time);
+```php
+// Add a single Link
+Sitemap::addLink('foo/bar', $date_time);
+```
 
 You can do this anywhere in your App.
 
@@ -29,15 +33,17 @@ accessed once needed.
 
 ### Adding an Eloquent Models Links
 
-    $collection = Pages::all();
+```php
+$collection = Pages::all();
 
-    // Add the Collection with a URL Prefix (The prefix can be omitted)
-    Sitemap::addCollection($collection, 'prefix');
+// Add the Collection with a URL Prefix (The prefix can be omitted)
+Sitemap::addCollection($collection, 'prefix');
+```
 
 You can do this anywhere in your App but be aware... The Eloquent Model must have fields providing the data for the
-`<loc>...</loc>` and `<lastmod>...</lastmod>` tags. (Defaults are `'slug'` and `'updated_at'`) You can set the field names in
-the configuration if your database schema differs from the defaults. If you run into trouble you could always do a
-`foreach()` with single Links thought...
+`<loc>...</loc>` and `<lastmod>...</lastmod>` tags. (Defaults are `'slug'` and `'updated_at'`) You can set the field
+names in the configuration if your database schema differs from the defaults. If you run into trouble you could always
+do a `foreach()` with single Links thought...
 
 #### Output will be something like this:
 
@@ -59,18 +65,20 @@ You basically need to set the correct HTTP Header, set the desired links and ech
 
 #### Example:
 
-    // Set the correct HTTP Header
-    header('Content-Type: ' . 'text/xml');
+```php
+// Set the correct HTTP Header
+header('Content-Type: ' . 'text/xml');
 
-    // Prepare data for the lastmod tag
-    $date_time = new DateTime('now');
+// Prepare data for the lastmod tag
+$date_time = new DateTime('now');
 
-    // Set the desired links
-    Sitemap::addLink('foo', $date_time);
-    Sitemap::addLink('bar', $date_time);
+// Set the desired links
+Sitemap::addLink('foo', $date_time);
+Sitemap::addLink('bar', $date_time);
 
-    // Echo out the output
-    echo Sitemap::getSitemapXml();
+// Echo out the output
+echo Sitemap::getSitemapXml();
+```
 
 #### Output for the above example:
 
@@ -90,4 +98,4 @@ You basically need to set the correct HTTP Header, set the desired links and ech
 Well I don't care ... :-)
 
 I guess you could do this in a controller... Just make sure this is being executed when someone requests
-domain.tld/sitemap.xml
+`domain.tld/sitemap.xml`

@@ -4,7 +4,9 @@ For any PHP App
 
 ### Disallow single Paths
 
-    $robots->disallowPath('/foo-bar');
+```php
+$robots->disallowPath('/foo-bar');
+```
 
 You can do this anywhere in your App. Just make sure you've setup everything before execution.
 
@@ -21,9 +23,11 @@ accessed once needed.
 
 Well you probably guessed it... :-) You would just do something like:
 
-    foreach ( $array_of_paths as $path ) {
-        $robots->disallowPath('/' . $path);
-    }
+```php
+foreach ( $array_of_paths as $path ) {
+    $robots->disallowPath('/' . $path);
+}
+```
 
 ### How to publish the generated contents
 
@@ -31,21 +35,23 @@ You basically need to set the correct HTTP Header, set the desired directives an
 
 #### Example:
 
-    // Set the correct HTTP Header
-    header('Content-Type: ' . 'text/plain');
+```php
+// Set the correct HTTP Header
+header('Content-Type: ' . 'text/plain');
 
-    // Setup
-    $helpers = new Hettiger\SeoAggregator\Support\Helpers;
-    $robots = new Hettiger\SeoAggregator\Robots($helpers, 'http', 'domain.tld');
+// Setup
+$helpers = new Hettiger\SeoAggregator\Support\Helpers;
+$robots = new Hettiger\SeoAggregator\Robots($helpers, 'http', 'domain.tld');
 
-    // Set the desired directives
-    $robots->disallowPath('/foo');
-    $robots->disallowPath('/bar');
+// Set the desired directives
+$robots->disallowPath('/foo');
+$robots->disallowPath('/bar');
 
-    // Echo out the output
-    echo $robots->getRobotsDirectives(true);
+// Echo out the output
+echo $robots->getRobotsDirectives(true);
+```
 
-In this example we did the Setup which could be done elsewhere too. As long as you have access to the $robots variable
+In this example we did the Setup which could be done elsewhere too. As long as you have access to the `$robots` variable
 when setting the directives and generating the output everything will be fine.
 
 #### Output for the above Example:
@@ -61,7 +67,7 @@ when setting the directives and generating the output everything will be fine.
 Well I don't care ... :-)
 
 I guess you could do this in a controller... Just make sure this is being executed when someone requests
-domain.tld/robots.txt
+`domain.tld/robots.txt`
 
 ### Adding a Link to the Sitemap
 
@@ -69,8 +75,12 @@ I hope the difference is self explaining...
 
 #### Generate the robots.txt contents WITHOUT a Link to the Sitemap:
 
-    $robots->getRobotsDirectives();
+```php
+$robots->getRobotsDirectives();
+```
 
 #### Generate the robots.txt contents WITH a Link to the Sitemap:
 
-    $robots->getRobotsDirectives(true);
+```php
+$robots->getRobotsDirectives(true);
+```

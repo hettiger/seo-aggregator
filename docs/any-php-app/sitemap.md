@@ -4,14 +4,18 @@ For any PHP App
 
 ### Adding single Links
 
-    // Prepare data for the lastmod tag
-    $date_time = new DateTime('now');
+```php
+// Prepare data for the lastmod tag
+$date_time = new DateTime('now');
+```
 
-We need some data for the lastmod tag. Have a read about the
+We need some data for the `<lastmod>...</lastmod>` tag. Have a read about the
 [DateTime Class](http://www.php.net/manual/en/class.datetime.php) if you're stuck on this...
 
-    // Add a single Link
-    $sitemap->addLink('foo/bar', $date_time);
+```php
+// Add a single Link
+$sitemap->addLink('foo/bar', $date_time);
+```
 
 You can do this anywhere in your App. Just make sure you've setup everything before execution.
 
@@ -31,9 +35,11 @@ accessed once needed.
 
 Well you probably guessed it... :-) You would just do something like:
 
-    foreach ( $array_of_links as $link ) {
-        $sitemap->addLink($link['slug'], $link['date_time']);
-    }
+```php
+foreach ( $array_of_links as $link ) {
+    $sitemap->addLink($link['slug'], $link['date_time']);
+}
+```
 
 ### How to publish the generated contents
 
@@ -41,25 +47,27 @@ You basically need to set the correct HTTP Header, set the desired links and ech
 
 #### Example:
 
-    // Set the correct HTTP Header
-    header('Content-Type: ' . 'text/xml');
+```php
+// Set the correct HTTP Header
+header('Content-Type: ' . 'text/xml');
 
-    // Setup
-    $helpers = new Hettiger\SeoAggregator\Support\Helpers;
-    $sitemap = new Hettiger\SeoAggregator\Sitemap($helpers, 'http', 'domain.tld');
+// Setup
+$helpers = new Hettiger\SeoAggregator\Support\Helpers;
+$sitemap = new Hettiger\SeoAggregator\Sitemap($helpers, 'http', 'domain.tld');
 
-    // Prepare data for the lastmod tag
-    $date_time = new DateTime('now');
+// Prepare data for the lastmod tag
+$date_time = new DateTime('now');
 
-    // Set the desired links
-    $sitemap->addLink('foo', $date_time);
-    $sitemap->addLink('bar', $date_time);
+// Set the desired links
+$sitemap->addLink('foo', $date_time);
+$sitemap->addLink('bar', $date_time);
 
-    // Echo out the output
-    echo $sitemap->getSitemapXml();
+// Echo out the output
+echo $sitemap->getSitemapXml();
+```
 
-In this example we did the Setup which could be done elsewhere too. As long as you have access to the $sitemap variable
-when setting the links and generating the output everything will be fine.
+In this example we did the Setup which could be done elsewhere too. As long as you have access to the `$sitemap`
+variable when setting the links and generating the output everything will be fine.
 
 #### Output for the above example:
 
@@ -79,4 +87,4 @@ when setting the links and generating the output everything will be fine.
 Well I don't care ... :-)
 
 I guess you could do this in a controller... Just make sure this is being executed when someone requests
-domain.tld/sitemap.xml
+`domain.tld/sitemap.xml`
