@@ -25,6 +25,8 @@ If you have any Problems with the Documentation please open an Issue.
 
 ### Require with Composer – Current Suggestion:
 
+    // composer.json
+
     "require": {
         "php": ">=5.3.0",
         "hettiger/seo-aggregator": "1.0.*",
