@@ -9,7 +9,7 @@ interface SitemapInterface {
      * @param array $field_names
      * @return SitemapInterface
      */
-    function __construct($helpers, $protocol = 'http', $host = null, $field_names = null);
+    function __construct($helpers, $protocol = 'http', $host = null, $field_names = array());
 
     /**
      * Add a link to the sitemap

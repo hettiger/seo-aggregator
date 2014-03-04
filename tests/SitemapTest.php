@@ -152,7 +152,10 @@ class SitemapTest extends \PHPUnit_Framework_TestCase {
     public function test_can_request_sitemap_xml_with_one_collection()
     {
         $this->helpers->shouldReceive('url')->andReturn('url');
-        $sitemap = new Sitemap($this->helpers);
+        $sitemap = new Sitemap($this->helpers, 'http', null, array(
+            'loc'       => 'slug',
+            'lastmod'   => 'updated_at'
+        ));
 
         $date_time = new DateTime('now');
         $date_time_formatted = date_format($date_time, 'Y-m-d');
@@ -187,7 +190,10 @@ class SitemapTest extends \PHPUnit_Framework_TestCase {
     public function test_can_request_sitemap_xml_with_one_collection_providing_protocol_and_host()
     {
         $helpers = new Helpers;
-        $sitemap = new Sitemap($helpers, 'https', 'domain.tld');
+        $sitemap = new Sitemap($helpers, 'https', 'domain.tld', array(
+            'loc'       => 'slug',
+            'lastmod'   => 'updated_at'
+        ));
 
         $date_time = new DateTime('now');
         $date_time_formatted = date_format($date_time, 'Y-m-d');
@@ -222,7 +228,10 @@ class SitemapTest extends \PHPUnit_Framework_TestCase {
     public function test_can_request_sitemap_xml_with_one_collection_and_prefix()
     {
         $helpers = new Helpers;
-        $sitemap = new Sitemap($helpers, 'https', 'domain.tld');
+        $sitemap = new Sitemap($helpers, 'https', 'domain.tld', array(
+            'loc'       => 'slug',
+            'lastmod'   => 'updated_at'
+        ));
 
         $date_time = new DateTime('now');
         $date_time_formatted = date_format($date_time, 'Y-m-d');
@@ -257,7 +266,10 @@ class SitemapTest extends \PHPUnit_Framework_TestCase {
     public function test_can_request_sitemap_xml_with_multiple_collections()
     {
         $this->helpers->shouldReceive('url')->andReturn('url');
-        $sitemap = new Sitemap($this->helpers);
+        $sitemap = new Sitemap($this->helpers, 'http', null, array(
+            'loc'       => 'slug',
+            'lastmod'   => 'updated_at'
+        ));
 
         $date_time = new DateTime('now');
         $date_time_formatted = date_format($date_time, 'Y-m-d');
@@ -312,7 +324,10 @@ class SitemapTest extends \PHPUnit_Framework_TestCase {
     public function test_can_request_sitemap_xml_with_multiple_collections_providing_protocol_and_host()
     {
         $helpers = new Helpers;
-        $sitemap = new Sitemap($helpers, 'https', 'domain.tld');
+        $sitemap = new Sitemap($helpers, 'https', 'domain.tld', array(
+            'loc'       => 'slug',
+            'lastmod'   => 'updated_at'
+        ));
 
         $date_time = new DateTime('now');
         $date_time_formatted = date_format($date_time, 'Y-m-d');
@@ -367,7 +382,10 @@ class SitemapTest extends \PHPUnit_Framework_TestCase {
     public function test_can_request_sitemap_xml_with_multiple_collections_and_multiple_prefixes()
     {
         $helpers = new Helpers;
-        $sitemap = new Sitemap($helpers, 'https', 'domain.tld');
+        $sitemap = new Sitemap($helpers, 'https', 'domain.tld', array(
+            'loc'       => 'slug',
+            'lastmod'   => 'updated_at'
+        ));
 
         $date_time = new DateTime('now');
         $date_time_formatted = date_format($date_time, 'Y-m-d');
@@ -422,7 +440,10 @@ class SitemapTest extends \PHPUnit_Framework_TestCase {
     public function test_can_request_sitemap_xml_with_a_mix_of_all_features()
     {
         $helpers = new Helpers;
-        $sitemap = new Sitemap($helpers, 'https', 'domain.tld');
+        $sitemap = new Sitemap($helpers, 'https', 'domain.tld', array(
+            'loc'       => 'slug',
+            'lastmod'   => 'updated_at'
+        ));
 
         $date_time = new DateTime('now');
         $date_time_formatted = date_format($date_time, 'Y-m-d');
@@ -452,6 +473,36 @@ class SitemapTest extends \PHPUnit_Framework_TestCase {
             . '</url>'
             . '<url>'
             . '<loc>https://domain.tld/prefix/bar</loc>'
+            . '<lastmod>' . $date_time_formatted . '</lastmod>'
+            . '</url>'
+            . '</urlset>';
+        $a = $sitemap->getSitemapXml();
+
+        $this->assertEquals($e, $a);
+    }
+
+    public function test_can_set_field_names()
+    {
+        $helpers = new Helpers;
+        $sitemap = new Sitemap($helpers, 'http', 'domain.tld', array(
+            'loc'       => 'loc',
+            'lastmod'   => 'lastmod'
+        ));
+
+        $date_time = new DateTime('now');
+        $date_time_formatted = date_format($date_time, 'Y-m-d');
+
+        $collection = new ArrayObject;
+        $collection->append((object) array(
+            'loc' => 'foo',
+            'lastmod' => $date_time
+        ));
+
+        $sitemap->addCollection($collection);
+
+        $e = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+            . '<url>'
+            . '<loc>http://domain.tld/foo</loc>'
             . '<lastmod>' . $date_time_formatted . '</lastmod>'
             . '</url>'
             . '</urlset>';
