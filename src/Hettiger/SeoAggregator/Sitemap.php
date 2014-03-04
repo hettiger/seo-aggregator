@@ -14,6 +14,7 @@ class Sitemap implements SitemapInterface {
 
     protected $protocol;
     protected $host;
+    protected $field_names;
 
     protected $links;
     protected $collections;
@@ -23,14 +24,16 @@ class Sitemap implements SitemapInterface {
      * @param HelpersInterface $helpers
      * @param string $protocol
      * @param null|string $host
+     * @param array $field_names
      * @return Sitemap
      */
-    function __construct($helpers, $protocol = 'http', $host = null)
+    function __construct($helpers, $protocol = 'http', $host = null, $field_names = array())
     {
         $this->helpers = $helpers;
 
         $this->protocol = $protocol;
         $this->host = $host;
+        $this->field_names = $field_names;
     }
 
     /**
@@ -83,6 +86,9 @@ class Sitemap implements SitemapInterface {
      */
     protected function iterateCollection($collection)
     {
+        $loc = $this->field_names['loc'];
+        $lastmod = $this->field_names['lastmod'];
+
         foreach ( $collection as $link ) {
             if ( ! is_null($link->prefix) ) {
                 $link->prefix .= '/';
@@ -91,12 +97,12 @@ class Sitemap implements SitemapInterface {
             $this->addLine('<url>');
             $this->addLine('<loc>');
             $this->addLine($this->helpers->url(
-                $link->prefix . $link->slug,
+                $link->prefix . $link->$loc,
                 $this->protocol,
                 $this->host
             ));
             $this->addLine('</loc>');
-            $this->addLine('<lastmod>' . date_format($link->updated_at, 'Y-m-d') . '</lastmod>');
+            $this->addLine('<lastmod>' . date_format($link->$lastmod, 'Y-m-d') . '</lastmod>');
             $this->addLine('</url>');
         }
     }

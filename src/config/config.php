@@ -19,4 +19,24 @@ return array(
 
     'host'      => null, // 'domain.tld' or null to make the app guess
 
+    /*
+    |--------------------------------------------------------------------------
+    | Eloquent Model Field Settings
+    |--------------------------------------------------------------------------
+    |
+    | When you generate a sitemap from an Eloquent Model, SEO Aggregator will
+    | automatically get all required data from your Model. Here you may specify
+    | the field names SEO Aggregator should be looking for. Be aware, if the
+    | fields you set here don't exist SEO Aggregator will fail.
+    |
+    */
+
+    'fields' => array(
+
+        'loc'       => 'slug',
+        'lastmod'   => 'updated_at',
+
+    ),
+
+
 );
