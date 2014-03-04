@@ -10,12 +10,14 @@ developed with the whole PHP Community in mind.
 
 ### Brief Example for Usage with Laravel 4
 
-    $collection = Pages::all();
+```php
+$collection = Pages::all();
 
-    Sitemap::addCollection($collection, 'url-prefix');
+Sitemap::addCollection($collection, 'url-prefix');
 
-    return Response::make(Sitemap::getSitemapXml())
-        ->header('Content-Type', 'text/xml');
+return Response::make(Sitemap::getSitemapXml())
+    ->header('Content-Type', 'text/xml');
+```
 
 ### Documentation
 
@@ -25,13 +27,15 @@ If you have any Problems with the Documentation please open an Issue.
 
 ### Require with Composer – Current Suggestion:
 
-    // composer.json
+```js
+// composer.json
 
-    "require": {
-        "php": ">=5.3.0",
-        "hettiger/seo-aggregator": "1.0.*",
-        // ...
-    },
+"require": {
+    "php": ">=5.3.0",
+    "hettiger/seo-aggregator": "1.0.*",
+    // ...
+},
+```
 
 #### Version Numbers
 

@@ -4,7 +4,9 @@ For Laravel 4
 
 ### Disallow single Paths
 
-    Robots::disallowPath('/foo-bar');
+```php
+Robots::disallowPath('/foo-bar');
+```
 
 You can do this anywhere in your App.
 
@@ -19,13 +21,16 @@ accessed once needed.
 
 ### Disallow an Eloquent Models Links
 
-    $collection = Pages::all();
+```php
+$collection = Pages::all();
 
-    // Disallow the Collection with a URL Prefix (The prefix can be omitted)
-    Robots::disallowCollection($collection, 'prefix');
+// Disallow the Collection with a URL Prefix (The prefix can be omitted)
+Robots::disallowCollection($collection, 'prefix');
+```
 
-You can do this anywhere in your App but be aware... The Eloquent Model must have a field called 'slug' for this to
-work. If you run into trouble you could always do a foreach() with single Paths thought...
+You can do this anywhere in your App but be aware... The Eloquent Model must have fields providing the data for the
+`<loc>...</loc>` tag. (Default is `'slug'`) You can set the field name in the configuration if your database schema
+differs from the defaults. If you run into trouble you could always do a `foreach()` with single Paths thought...
 
 #### Output will be something like this:
 
@@ -48,15 +53,17 @@ You basically need to set the correct HTTP Header, set the desired directives an
 
 #### Example:
 
-    // Set the correct HTTP Header
-    header('Content-Type: ' . 'text/plain');
+```php
+// Set the correct HTTP Header
+header('Content-Type: ' . 'text/plain');
 
-    // Set the desired directives
-    Robots::disallowPath('/foo');
-    Robots::disallowPath('/bar');
+// Set the desired directives
+Robots::disallowPath('/foo');
+Robots::disallowPath('/bar');
 
-    // Echo out the output
-    echo Robots::getRobotsDirectives(true);
+// Echo out the output
+echo Robots::getRobotsDirectives(true);
+```
 
 #### Output for the above Example:
 
@@ -71,7 +78,7 @@ You basically need to set the correct HTTP Header, set the desired directives an
 Well I don't care ... :-)
 
 I guess you could do this in a controller... Just make sure this is being executed when someone requests
-domain.tld/robots.txt
+`domain.tld/robots.txt`
 
 ### Adding a Link to the Sitemap
 
@@ -79,8 +86,12 @@ I hope the difference is self explaining...
 
 #### Generate the robots.txt contents WITHOUT a Link to the Sitemap:
 
-    Robots::getRobotsDirectives();
+```php
+Robots::getRobotsDirectives();
+```
 
 #### Generate the robots.txt contents WITH a Link to the Sitemap:
 
-    Robots::getRobotsDirectives(true);
+```php
+Robots::getRobotsDirectives(true);
+```

@@ -1,5 +1,12 @@
 ## SEO Aggregator
 
+#### Version: 1.0.1
+
+###### Achievements
+
+* Eloquent Model field names are now fully customizable
+* Add syntax highlighting to the documentation
+
 #### Version: 1.0.0
 
 ###### Achievements
