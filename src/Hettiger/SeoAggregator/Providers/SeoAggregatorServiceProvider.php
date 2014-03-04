@@ -37,8 +37,9 @@ class SeoAggregatorServiceProvider extends ServiceProvider {
         {
             $protocol = Config::get('seo-aggregator::protocol');
             $host = Config::get('seo-aggregator::host');
+            $field_names = Config::get('seo-aggregator::fields');
 
-            return new Sitemap(new Helpers, $protocol, $host);
+            return new Sitemap(new Helpers, $protocol, $host, $field_names);
         });
 
         App::bind('seo-aggregator.robots', function()

@@ -14,6 +14,7 @@ class Sitemap implements SitemapInterface {
 
     protected $protocol;
     protected $host;
+    protected $field_names;
 
     protected $links;
     protected $collections;
@@ -23,14 +24,16 @@ class Sitemap implements SitemapInterface {
      * @param HelpersInterface $helpers
      * @param string $protocol
      * @param null|string $host
+     * @param array $field_names
      * @return Sitemap
      */
-    function __construct($helpers, $protocol = 'http', $host = null)
+    function __construct($helpers, $protocol = 'http', $host = null, $field_names = null)
     {
         $this->helpers = $helpers;
 
         $this->protocol = $protocol;
         $this->host = $host;
+        $this->field_names = $field_names;
     }
 
     /**

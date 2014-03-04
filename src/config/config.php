@@ -31,8 +31,12 @@ return array(
     |
     */
 
-    'loc' => 'slug',
+    'fields' => array(
 
-    'lastmod' => 'updated_at',
+        'loc'       => 'slug',
+        'lastmod'   => 'updated_at',
+
+    ),
+
 
 );
