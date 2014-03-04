@@ -13,6 +13,7 @@ class Robots implements RobotsInterface {
 
     protected $protocol;
     protected $host;
+    protected $field_names;
 
     protected $disallowed_paths;
     protected $disallowed_collections;
@@ -22,14 +23,16 @@ class Robots implements RobotsInterface {
      * @param HelpersInterface $helpers
      * @param string $protocol
      * @param null|string $host
+     * @param array $field_names
      * @return Robots
      */
-    function __construct($helpers, $protocol = 'http', $host = null)
+    function __construct($helpers, $protocol = 'http', $host = null, $field_names = array())
     {
         $this->helpers = $helpers;
 
         $this->protocol = $protocol;
         $this->host = $host;
+        $this->field_names = $field_names;
     }
 
     /**
@@ -78,13 +81,15 @@ class Robots implements RobotsInterface {
      */
     protected function iterateDisallowedCollection($collection)
     {
+        $loc = $this->field_names['loc'];
+
         foreach ( $collection as $path ) {
             if ( ! is_null($path->prefix) ) {
                 $path->prefix .= '/';
             }
 
-            $this->addLine('Disallow: ' . '/' . $path->prefix . $path->slug);
-            $this->addLine('Allow: ' . '/' . $path->prefix . $path->slug . '-');
+            $this->addLine('Disallow: ' . '/' . $path->prefix . $path->$loc);
+            $this->addLine('Allow: ' . '/' . $path->prefix . $path->$loc . '-');
         }
     }
 

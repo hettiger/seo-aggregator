@@ -127,7 +127,7 @@ class RobotsTest extends \PHPUnit_Framework_TestCase {
 
     public function test_can_request_robots_directives_considering_one_disallowed_collection()
     {
-        $robots = new Robots($this->helpers);
+        $robots = new Robots($this->helpers, 'http', null, array('loc' => 'slug'));
         $collection = new ArrayObject;
 
         $collection->append((object) array(
@@ -145,7 +145,7 @@ class RobotsTest extends \PHPUnit_Framework_TestCase {
     public function test_can_request_robots_directives_considering_one_disallowed_collection_and_sitemap_link()
     {
         $this->helpers->shouldReceive('url')->andReturn('url');
-        $robots = new Robots($this->helpers);
+        $robots = new Robots($this->helpers, 'http', null, array('loc' => 'slug'));
         $collection = new ArrayObject;
 
         $collection->append((object) array(
@@ -163,7 +163,7 @@ class RobotsTest extends \PHPUnit_Framework_TestCase {
 
     public function test_can_request_robots_directives_considering_one_disallowed_collection_with_prefix()
     {
-        $robots = new Robots($this->helpers);
+        $robots = new Robots($this->helpers, 'http', null, array('loc' => 'slug'));
         $collection = new ArrayObject;
 
         $collection->append((object) array(
@@ -180,7 +180,7 @@ class RobotsTest extends \PHPUnit_Framework_TestCase {
 
     public function test_can_request_robots_directives_considering_multiple_disallowed_collections()
     {
-        $robots = new Robots($this->helpers);
+        $robots = new Robots($this->helpers, 'http', null, array('loc' => 'slug'));
         $collection = new ArrayObject;
 
         $collection->append((object) array(
@@ -203,7 +203,7 @@ class RobotsTest extends \PHPUnit_Framework_TestCase {
     public function test_can_request_robots_directives_considering_multiple_disallowed_collections_and_sitemap_link()
     {
         $this->helpers->shouldReceive('url')->andReturn('url');
-        $robots = new Robots($this->helpers);
+        $robots = new Robots($this->helpers, 'http', null, array('loc' => 'slug'));
         $collection = new ArrayObject;
 
         $collection->append((object) array(
@@ -225,7 +225,7 @@ class RobotsTest extends \PHPUnit_Framework_TestCase {
 
     public function test_can_request_robots_directives_considering_multiple_disallowed_collections_with_prefix()
     {
-        $robots = new Robots($this->helpers);
+        $robots = new Robots($this->helpers, 'http', null, array('loc' => 'slug'));
         $collection = new ArrayObject;
 
         $collection->append((object) array(
@@ -248,7 +248,7 @@ class RobotsTest extends \PHPUnit_Framework_TestCase {
     public function test_can_request_robots_directives_with_a_mix_of_all_features()
     {
         $this->helpers->shouldReceive('url')->andReturn('url');
-        $robots = new Robots($this->helpers);
+        $robots = new Robots($this->helpers, 'http', null, array('loc' => 'slug'));
         $collection = new ArrayObject;
 
         $collection->append((object) array(
@@ -266,6 +266,23 @@ class RobotsTest extends \PHPUnit_Framework_TestCase {
             . PHP_EOL . 'Disallow: /prefix/bar' . PHP_EOL . 'Allow: /prefix/bar-'
             . PHP_EOL . 'Disallow: /foo-bar' . PHP_EOL . PHP_EOL . 'Sitemap: url';
         $a = $robots->getRobotsDirectives(true);
+
+        $this->assertEquals($e, $a);
+    }
+
+    public function test_can_set_field_name()
+    {
+        $robots = new Robots($this->helpers, 'http', null, array('loc' => 'loc'));
+        $collection = new ArrayObject;
+
+        $collection->append((object) array(
+            'loc' => 'bar'
+        ));
+
+        $robots->disallowCollection($collection);
+
+        $e = 'User-agent: *' . PHP_EOL . 'Disallow: /bar' . PHP_EOL . 'Allow: /bar-';
+        $a = $robots->getRobotsDirectives();
 
         $this->assertEquals($e, $a);
     }
