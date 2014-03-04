@@ -57,7 +57,7 @@ Publish the configuration so you can make changes:
 
     php artisan config:publish hettiger/seo-aggregator
 
-Once this is done you configuration file is located here:
+Once this is done your configuration file is located here:
 
     app/config/packages/hettiger/seo-aggregator/config.php
 

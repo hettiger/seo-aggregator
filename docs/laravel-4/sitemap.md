@@ -35,9 +35,9 @@ accessed once needed.
     Sitemap::addCollection($collection, 'prefix');
 
 You can do this anywhere in your App but be aware... The Eloquent Model must have fields providing the data for the
-<loc>...</loc> and <lastmod>...</lastmod> tags. (Defaults are 'slug' and 'updated_at') You can set the field names in
+`<loc>...</loc>` and `<lastmod>...</lastmod>` tags. (Defaults are `'slug'` and `'updated_at'`) You can set the field names in
 the configuration if your database schema differs from the defaults. If you run into trouble you could always do a
-foreach() with single Links thought...
+`foreach()` with single Links thought...
 
 #### Output will be something like this:
 
