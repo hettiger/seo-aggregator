@@ -43,7 +43,15 @@ Now run following terminal command from your Laravel 4 App root:
 
 ### Configuration
 
-If you want to define a fixed protocol and domain you'll need to configure this package.
+Here's a quick overview of the options SEO Aggregator provides:
+
+* Fix Protocol and Host
+
+* Eloquent Model Field Settings
+
+Have a look at the file src/config/config.php for more information.
+
+#### How can I customize the Configuration?
 
 Publish the configuration so you can make changes:
 

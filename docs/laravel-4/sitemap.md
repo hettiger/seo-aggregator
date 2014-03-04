@@ -34,9 +34,10 @@ accessed once needed.
     // Add the Collection with a URL Prefix (The prefix can be omitted)
     Sitemap::addCollection($collection, 'prefix');
 
-You can do this anywhere in your App but be aware... The Eloquent Model must have a field called 'slug' and the
-'updated_at' field for this to work. If you run into trouble you could always do a foreach() with single Links
-thought...
+You can do this anywhere in your App but be aware... The Eloquent Model must have fields providing the data for the
+<loc>...</loc> and <lastmod>...</lastmod> tags. (Defaults are 'slug' and 'updated_at') You can set the field names in
+the configuration if your database schema differs from the defaults. If you run into trouble you could always do a
+foreach() with single Links thought...
 
 #### Output will be something like this:
 
