@@ -10,15 +10,17 @@ Require this package with [Composer](https://getcomposer.org) and update your de
 
 #### Registration of the ServiceProvider
 
-    // app/config/app.php
+```php
+// app/config/app.php
 
-    'providers' => array(
+'providers' => array(
 
-        // ...
+    // ...
 
-        'Hettiger\SeoAggregator\Providers\SeoAggregatorServiceProvider',
+    'Hettiger\SeoAggregator\Providers\SeoAggregatorServiceProvider',
 
-    );
+);
+```
 
 Now run following terminal command from your Laravel 4 App root:
 
@@ -26,16 +28,18 @@ Now run following terminal command from your Laravel 4 App root:
 
 #### Registration of the Aliases
 
-    // app/config/app.php
+```php
+// app/config/app.php
 
-    'aliases' => array(
+'aliases' => array(
 
-        // ...
+    // ...
 
-        'Robots'    => 'Hettiger\SeoAggregator\Facades\Robots',
-        'Sitemap'   => 'Hettiger\SeoAggregator\Facades\Sitemap',
+    'Robots'    => 'Hettiger\SeoAggregator\Facades\Robots',
+    'Sitemap'   => 'Hettiger\SeoAggregator\Facades\Sitemap',
 
-    );
+);
+```
 
 Now run following terminal command from your Laravel 4 App root:
 
@@ -43,13 +47,21 @@ Now run following terminal command from your Laravel 4 App root:
 
 ### Configuration
 
-If you want to define a fixed protocol and domain you'll need to configure this package.
+Here's a quick overview of the options SEO Aggregator provides:
+
+* Fix Protocol and Host
+
+* Eloquent Model Field Settings
+
+Have a look at the file `src/config/config.php` for more information.
+
+#### How can I customize the Configuration?
 
 Publish the configuration so you can make changes:
 
     php artisan config:publish hettiger/seo-aggregator
 
-Once this is done you configuration file is located here:
+Once this is done your configuration file is located here:
 
     app/config/packages/hettiger/seo-aggregator/config.php
 
