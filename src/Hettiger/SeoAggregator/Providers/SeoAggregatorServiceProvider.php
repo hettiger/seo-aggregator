@@ -16,6 +16,10 @@ class SeoAggregatorServiceProvider extends ServiceProvider {
 	 */
 	protected $defer = false;
 
+	private $protocol;
+	private $host;
+	private $field_names;
+
 	/**
 	 * Bootstrap the application events.
 	 *
@@ -24,6 +28,10 @@ class SeoAggregatorServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('hettiger/seo-aggregator', null, __DIR__ . '/../../../../src');
+
+		$this->protocol = Config::get('seo-aggregator::protocol');
+		$this->host = Config::get('seo-aggregator::host');
+		$this->field_names = Config::get('seo-aggregator::fields');
 	}
 
 	/**
@@ -35,20 +43,12 @@ class SeoAggregatorServiceProvider extends ServiceProvider {
 	{
         App::bind('seo-aggregator.sitemap', function()
         {
-            $protocol = Config::get('seo-aggregator::protocol');
-            $host = Config::get('seo-aggregator::host');
-            $field_names = Config::get('seo-aggregator::fields');
-
-            return new Sitemap(new Helpers, $protocol, $host, $field_names);
+            return new Sitemap(new Helpers, $this->protocol, $this->host, $this->field_names);
         });
 
         App::bind('seo-aggregator.robots', function()
         {
-            $protocol = Config::get('seo-aggregator::protocol');
-            $host = Config::get('seo-aggregator::host');
-            $field_names = Config::get('seo-aggregator::fields');
-
-            return new Robots(new Helpers, $protocol, $host, $field_names);
+            return new Robots(new Helpers, $this->protocol, $this->host, $this->field_names);
         });
 	}
 
