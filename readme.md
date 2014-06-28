@@ -31,8 +31,8 @@ If you have any Problems with the Documentation please open an Issue.
 // composer.json
 
 "require": {
-    "php": ">=5.3.0",
-    "hettiger/seo-aggregator": "1.0.*",
+    "php": ">=5.4.0",
+    "hettiger/seo-aggregator": "1.1.*",
     // ...
 },
 ```
@@ -41,6 +41,12 @@ If you have any Problems with the Documentation please open an Issue.
 
 An Update is always considered safe on changes regarding the last digit of the Version Number. Never update when the
 first or second digit has changed without looking into the [Release Notes](release-notes.md).
+
+| Versions | Laravel compatibility | PHP compatibility |
+| -------- | --------------------- | ----------------- |
+| 1.1.*    | Laravel 4.2           | HHVM, 5.4+        |
+| 1.0.*    | Laravel 4.1           | 5.3+              |
+| 0.*.*    | Laravel 4.1           | 5.3+              |
 
 ### License
 
