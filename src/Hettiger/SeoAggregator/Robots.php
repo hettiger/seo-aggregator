@@ -1,39 +1,12 @@
 <?php namespace Hettiger\SeoAggregator;
 
-use Hettiger\SeoAggregator\Interfaces\HelpersInterface;
 use Hettiger\SeoAggregator\Interfaces\RobotsInterface;
-use Hettiger\SeoAggregator\Support\Helpers;
 
-class Robots implements RobotsInterface {
-
-    /**
-     * @var Helpers
-     */
-    protected $helpers;
-
-    protected $protocol;
-    protected $host;
-    protected $field_names;
+class Robots extends Generator implements RobotsInterface {
 
     protected $disallowed_paths;
     protected $disallowed_collections;
     protected $lines;
-
-    /**
-     * @param HelpersInterface $helpers
-     * @param string $protocol
-     * @param null|string $host
-     * @param array $field_names
-     * @return Robots
-     */
-    function __construct($helpers, $protocol = 'http', $host = null, $field_names = array())
-    {
-        $this->helpers = $helpers;
-
-        $this->protocol = $protocol;
-        $this->host = $host;
-        $this->field_names = $field_names;
-    }
 
     /**
      * Disallow a path for robots
