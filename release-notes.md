@@ -1,5 +1,11 @@
 ## SEO Aggregator
 
+#### Version: 1.1.0
+
+###### Achievements
+
+* Updated SEO Aggregator to work with Laravel 4.2
+
 #### Version: 1.0.1
 
 ###### Achievements
