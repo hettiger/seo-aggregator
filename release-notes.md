@@ -1,5 +1,11 @@
 ## SEO Aggregator
 
+#### Version: 1.1.1
+
+###### Achievements
+
+* Minor improvements
+
 #### Version: 1.1.0
 
 ###### Achievements
