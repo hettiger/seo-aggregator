@@ -1,39 +1,13 @@
 <?php namespace Hettiger\SeoAggregator;
 
-use Hettiger\SeoAggregator\Interfaces\HelpersInterface;
 use Hettiger\SeoAggregator\Interfaces\SitemapInterface;
 use Hettiger\SeoAggregator\Support\CustomObject;
 
-class Sitemap implements SitemapInterface {
-
-    /**
-     * @var HelpersInterface
-     */
-    protected $helpers;
-
-    protected $protocol;
-    protected $host;
-    protected $field_names;
+class Sitemap extends Generator implements SitemapInterface {
 
     protected $links;
     protected $collections;
     protected $lines;
-
-    /**
-     * @param HelpersInterface $helpers
-     * @param string $protocol
-     * @param null|string $host
-     * @param array $field_names
-     * @return Sitemap
-     */
-    function __construct($helpers, $protocol = 'http', $host = null, $field_names = array())
-    {
-        $this->helpers = $helpers;
-
-        $this->protocol = $protocol;
-        $this->host = $host;
-        $this->field_names = $field_names;
-    }
 
     /**
      * Add a link to the sitemap
