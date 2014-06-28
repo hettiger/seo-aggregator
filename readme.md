@@ -46,7 +46,7 @@ first or second digit has changed without looking into the [Release Notes](relea
 | -------- | --------------------- | ----------------- |
 | 1.1.*    | Laravel 4.2           | HHVM, 5.4+        |
 | 1.0.*    | Laravel 4.1           | 5.3+              |
-| 0.*.*    | Laravel 4.1           | 5.3+              |
+| 0.\*.*   | Laravel 4.1           | 5.3+              |
 
 ### License
 
