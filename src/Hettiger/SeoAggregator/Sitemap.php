@@ -3,12 +3,11 @@
 use Hettiger\SeoAggregator\Interfaces\HelpersInterface;
 use Hettiger\SeoAggregator\Interfaces\SitemapInterface;
 use Hettiger\SeoAggregator\Support\CustomObject;
-use Hettiger\SeoAggregator\Support\Helpers;
 
 class Sitemap implements SitemapInterface {
 
     /**
-     * @var Helpers
+     * @var HelpersInterface
      */
     protected $helpers;
 

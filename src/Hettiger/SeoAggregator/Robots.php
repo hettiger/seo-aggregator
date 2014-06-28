@@ -2,12 +2,11 @@
 
 use Hettiger\SeoAggregator\Interfaces\HelpersInterface;
 use Hettiger\SeoAggregator\Interfaces\RobotsInterface;
-use Hettiger\SeoAggregator\Support\Helpers;
 
 class Robots implements RobotsInterface {
 
     /**
-     * @var Helpers
+     * @var HelpersInterface
      */
     protected $helpers;
 
